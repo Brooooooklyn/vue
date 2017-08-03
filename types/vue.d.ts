@@ -86,9 +86,9 @@ export declare class Vue {
   static extend(options: ComponentOptions<Vue> | FunctionalComponentOptions): typeof Vue;
   static nextTick(callback: () => void, context?: any[]): void;
   static nextTick(): Promise<void>
-  static set<T>(object: Object, key: string, value: T): T;
+  static set<T, U extends keyof T>(object: T, key: U, value: T[U]): T;
   static set<T>(array: T[], key: number, value: T): T;
-  static delete(object: Object, key: string): void;
+  static delete<T>(object: T, key: keyof T): void;
   static delete<T>(array: T[], key: number): void;
 
   static directive(

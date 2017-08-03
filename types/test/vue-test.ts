@@ -35,8 +35,9 @@ class Test extends Vue {
     this.$mount("#app", false);
     this.$forceUpdate();
     this.$destroy();
-    this.$set({}, "key", "value");
-    this.$delete({}, "key");
+    this.$set({ key: "foo", otherKey: "bar"}, "key", "value");
+    this.$set({ key: "foo", otherKey: "bar"}, "otherKey", "");
+    this.$delete({ key: 1 }, "key");
     this.$watch("a", (val: number, oldVal: number) => {}, {
       immediate: true,
       deep: false
@@ -83,9 +84,9 @@ class Test extends Vue {
     });
     this.nextTick(() => {});
     this.nextTick().then(() => {});
-    this.set({}, "", "");
+    this.set({key: 'foo'}, 'key', "");
     this.set([true, false, true], 1, true);
-    this.delete({}, "");
+    this.delete({ key: 'foo' }, "key");
     this.delete([true, false], 0);
     this.directive("", {bind() {}});
     this.filter("", (value: number) => value);
